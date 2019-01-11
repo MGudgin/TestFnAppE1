@@ -8,17 +8,14 @@ namespace PlayFab.CloudScript
     using Microsoft.Azure.WebJobs.Extensions.Http;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Logging;
-    using Newtonsoft.Json;
 
     public static class LevelCompleteFn
     {
         [FunctionName("LevelComplete")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest httpReq,
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] LevelCompleteRequest req,
             ILogger log)
         {
-            var req = JsonConvert.DeserializeObject<LevelCompleteRequest>(await httpReq.ReadAsStringAsync());
-            
             log.LogInformation("LevelComplete processed a request.");
 
             log.LogInformation($"Level: {req.level.level} Points: {req.level.points}");
