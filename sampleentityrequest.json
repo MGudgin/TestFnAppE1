@@ -1,0 +1,231 @@
+{
+    "FunctionParameter": {
+        "level": 3,
+        "points": 500
+    },
+    "RequestorEntity": {
+        "Id": "A5F3",
+        "Type": "title"
+    },
+    "EntityProfile": {
+        "Entity": {
+            "Type": "title_player_account",
+            "Id":"1234567787392"
+        },
+        "EntityChain": "title_player_account!09839712/1289749013/19073097/1234567787392",
+        "VersionNumber": 12,
+        "FriendlyName": "GentlestWarrior",
+        "Permissions": [
+            {
+                "Comment": "Allow all entities to read the group's metadata, such as name",
+                "Action": "Read",
+                "Effect" "Allow",
+                "Resource": "pfrn:group--*!*",
+                PrincipalName = new
+                {
+                    ChildOf = new { EntityType = PolicyConstants.TitleEntity, EntityId = titleId.ToIdString() }
+                }.ToJson()
+            },
+            new PermissionStatementRaw()
+            {
+                Comment = "Allow members of the group administrator role to modify the group metadata",
+                ActionName = PolicyConstants.Wildcard,
+                Effect = EffectType.Allow,
+                ResourceName =
+                    $"pfrn:group--*!*",
+                PrincipalName = new
+                {
+                    MemberOf = new
+                    {
+                        RoleId = "admins"
+                    }
+                }.ToJson()
+            },
+            new PermissionStatementRaw()
+            {
+                Comment = "Allow members of the group to read entity profile data and files",
+                ActionName = PolicyConstants.ReadAction,
+                Effect = EffectType.Allow,
+                ResourceName =
+                    $"{PolicyConstants.DataPrefix}--*!*/Profile/*",
+                PrincipalName = new
+                {
+                    MemberOf = new
+                    {
+                        RoleId = PolicyConstants.Wildcard
+                    }
+                }.ToJson()
+            },
+            new PermissionStatementRaw()
+            {
+                Comment = "Allow members of the group administrator role to modify group profile data and files",
+                ActionName = PolicyConstants.Wildcard,
+                Effect = EffectType.Allow,
+                ResourceName =
+                    $"{PolicyConstants.DataPrefix}--*!*/*",
+                PrincipalName = new
+                {
+                    MemberOf = new
+                    {
+                        RoleId = "admins"
+                    }
+                }.ToJson()
+            },
+            new PermissionStatementRaw()
+            {
+                Comment = "Allow members of the group administrator role to do anything with the group",
+                ActionName = PolicyConstants.Wildcard,
+                Effect = EffectType.Allow,
+                ResourceName =
+                    $"pfrn:group--*!*/*",
+                PrincipalName = new
+                {
+                    MemberOf = new
+                    {
+                        RoleId = "admins"
+                    }
+                }.ToJson()
+            },
+            new PermissionStatementRaw()
+            {
+                Comment = "Allow members of the group to view members of the group",
+                ActionName = PolicyConstants.ReadAction,
+                Effect = EffectType.Allow,
+                ResourceName =
+                    $"pfrn:group--*!*/Members/*",
+                PrincipalName = new
+                {
+                    MemberOf = new
+                    {
+                        RoleId = PolicyConstants.Wildcard
+                    }
+                }.ToJson()
+            },
+            new PermissionStatementRaw()
+            {
+                Comment = "Allow members of the group to read all roles in the group",
+                ActionName = PolicyConstants.ReadAction,
+                Effect = EffectType.Allow,
+                ResourceName =
+                    $"pfrn:group--*!*/Roles/*",
+                PrincipalName = new
+                {
+                    MemberOf = new
+                    {
+                        RoleId = PolicyConstants.Wildcard
+                    }
+                }.ToJson()
+            },
+            new PermissionStatementRaw()
+            {
+                Comment = "Allow all entities to apply to join the group",
+                ActionName = PolicyConstants.CreateAction,
+                Effect = EffectType.Allow,
+                ResourceName =
+                    $"pfrn:group--*!*/Applications/*",
+                PrincipalName = new
+                {
+                    ChildOf = new { EntityType = PolicyConstants.TitleEntity, EntityId = titleId.ToIdString() }
+                }.ToJson()
+            },
+            new PermissionStatementRaw
+            {
+                Comment = "Allow entities to leave the group",
+                ActionName = PolicyConstants.RemoveMemberAction,
+                Effect = EffectType.Allow,
+                ResourceName = $"pfrn:group--*!*/Members/{PolicyConstants.SelfIdentifierSpace}",
+                PrincipalName = new
+                {
+                    ChildOf = new { EntityType = PolicyConstants.TitleEntity, EntityId = titleId.ToIdString() }
+                }.ToJson()
+            },
+            new PermissionStatementRaw
+            {
+                Comment = "Allow entities to leave any role that they are in",
+                ActionName = PolicyConstants.RemoveMemberAction,
+                Effect = EffectType.Allow,
+                ResourceName = $"pfrn:group--*!*/Roles/*/Members/{PolicyConstants.SelfIdentifierSpace}",
+                PrincipalName = new
+                {
+                    ChildOf = new { EntityType = PolicyConstants.TitleEntity, EntityId = titleId.ToIdString() }
+                }.ToJson()
+            },
+
+
+            {
+
+
+
+                "Resource": "",
+                "Action": "",
+                "Effect": "Allow",
+                "Principal": {
+
+                },
+                "Comment": "",
+                "Condition": {
+
+                }
+            },
+            {
+                "Resource": "",
+                "Action": "",
+                "Effect": "Deny",
+                "Principal": {
+
+                },
+                "Comment": "",
+                "Condition": {
+
+                }
+            }
+        ],
+        "Objects": {
+            "Obj1": {
+                "EscapedDataObject": null,
+                "DataObject": {
+                    "name": "One Thousand Voices",
+                    "rarity": "exotic",
+                    "slot": "power"
+                },
+                "ObjectName": "Obj1"
+            },
+            "Obj2": {
+                "EscapedDataObject": null,
+                "DataObject": {
+                    "name": "Insurmountable Skullfort",
+                    "rarity": "exotic",
+                    "slot": "helmet"
+                },
+                "ObjectName": "Obj2"
+            }
+        },
+        "Files": {
+            "data.json": {
+                "FileName": "data.json",
+                "LastModified": "",
+                "Size": 1024,
+                "Checksum": "a1b2c3"
+            }
+            
+        },
+        "Language": "en-us",
+        "Statistics": [
+            {
+                "Name": "",
+                "Tag": "",
+                "Value": 100,
+                "Version": 1,
+                "Metadata": ""
+            }
+        ],
+        "Lineage": {
+            "NamespaceId": "",
+            "TitleId": "A5F3",
+            "MasterPlayerAccountId": "",
+            "TitlePlayerAccountId": "123abc",
+            "CharacterId": "",
+            "GroupId": ""
+        }
+    }
+}
