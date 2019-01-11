@@ -19,166 +19,117 @@
             {
                 "Comment": "Allow all entities to read the group's metadata, such as name",
                 "Action": "Read",
-                "Effect" "Allow",
-                "Resource": "pfrn:group--*!*",
-                PrincipalName = new
-                {
-                    ChildOf = new { EntityType = PolicyConstants.TitleEntity, EntityId = titleId.ToIdString() }
-                }.ToJson()
-            },
-            new PermissionStatementRaw()
-            {
-                Comment = "Allow members of the group administrator role to modify the group metadata",
-                ActionName = PolicyConstants.Wildcard,
-                Effect = EffectType.Allow,
-                ResourceName =
-                    $"pfrn:group--*!*",
-                PrincipalName = new
-                {
-                    MemberOf = new
-                    {
-                        RoleId = "admins"
-                    }
-                }.ToJson()
-            },
-            new PermissionStatementRaw()
-            {
-                Comment = "Allow members of the group to read entity profile data and files",
-                ActionName = PolicyConstants.ReadAction,
-                Effect = EffectType.Allow,
-                ResourceName =
-                    $"{PolicyConstants.DataPrefix}--*!*/Profile/*",
-                PrincipalName = new
-                {
-                    MemberOf = new
-                    {
-                        RoleId = PolicyConstants.Wildcard
-                    }
-                }.ToJson()
-            },
-            new PermissionStatementRaw()
-            {
-                Comment = "Allow members of the group administrator role to modify group profile data and files",
-                ActionName = PolicyConstants.Wildcard,
-                Effect = EffectType.Allow,
-                ResourceName =
-                    $"{PolicyConstants.DataPrefix}--*!*/*",
-                PrincipalName = new
-                {
-                    MemberOf = new
-                    {
-                        RoleId = "admins"
-                    }
-                }.ToJson()
-            },
-            new PermissionStatementRaw()
-            {
-                Comment = "Allow members of the group administrator role to do anything with the group",
-                ActionName = PolicyConstants.Wildcard,
-                Effect = EffectType.Allow,
-                ResourceName =
-                    $"pfrn:group--*!*/*",
-                PrincipalName = new
-                {
-                    MemberOf = new
-                    {
-                        RoleId = "admins"
-                    }
-                }.ToJson()
-            },
-            new PermissionStatementRaw()
-            {
-                Comment = "Allow members of the group to view members of the group",
-                ActionName = PolicyConstants.ReadAction,
-                Effect = EffectType.Allow,
-                ResourceName =
-                    $"pfrn:group--*!*/Members/*",
-                PrincipalName = new
-                {
-                    MemberOf = new
-                    {
-                        RoleId = PolicyConstants.Wildcard
-                    }
-                }.ToJson()
-            },
-            new PermissionStatementRaw()
-            {
-                Comment = "Allow members of the group to read all roles in the group",
-                ActionName = PolicyConstants.ReadAction,
-                Effect = EffectType.Allow,
-                ResourceName =
-                    $"pfrn:group--*!*/Roles/*",
-                PrincipalName = new
-                {
-                    MemberOf = new
-                    {
-                        RoleId = PolicyConstants.Wildcard
-                    }
-                }.ToJson()
-            },
-            new PermissionStatementRaw()
-            {
-                Comment = "Allow all entities to apply to join the group",
-                ActionName = PolicyConstants.CreateAction,
-                Effect = EffectType.Allow,
-                ResourceName =
-                    $"pfrn:group--*!*/Applications/*",
-                PrincipalName = new
-                {
-                    ChildOf = new { EntityType = PolicyConstants.TitleEntity, EntityId = titleId.ToIdString() }
-                }.ToJson()
-            },
-            new PermissionStatementRaw
-            {
-                Comment = "Allow entities to leave the group",
-                ActionName = PolicyConstants.RemoveMemberAction,
-                Effect = EffectType.Allow,
-                ResourceName = $"pfrn:group--*!*/Members/{PolicyConstants.SelfIdentifierSpace}",
-                PrincipalName = new
-                {
-                    ChildOf = new { EntityType = PolicyConstants.TitleEntity, EntityId = titleId.ToIdString() }
-                }.ToJson()
-            },
-            new PermissionStatementRaw
-            {
-                Comment = "Allow entities to leave any role that they are in",
-                ActionName = PolicyConstants.RemoveMemberAction,
-                Effect = EffectType.Allow,
-                ResourceName = $"pfrn:group--*!*/Roles/*/Members/{PolicyConstants.SelfIdentifierSpace}",
-                PrincipalName = new
-                {
-                    ChildOf = new { EntityType = PolicyConstants.TitleEntity, EntityId = titleId.ToIdString() }
-                }.ToJson()
-            },
-
-
-            {
-
-
-
-                "Resource": "",
-                "Action": "",
                 "Effect": "Allow",
-                "Principal": {
-
-                },
-                "Comment": "",
-                "Condition": {
-
+                "Resource": "pfrn:group--*!*",
+                "Principal": {                
+                    "ChildOf": { 
+                        "EntityType": "title",
+                        "EntityId": "A5F3"
+                    }
                 }
             },
             {
-                "Resource": "",
-                "Action": "",
-                "Effect": "Deny",
-                "Principal": {
-
-                },
-                "Comment": "",
-                "Condition": {
-
+                "Comment": "Allow members of the group administrator role to modify the group metadata",
+                "Action": "*",
+                "Effect": "Allow",
+                "Resource": "pfrn:group--*!*",
+                "Principal": {                
+                    "MemberOf": { 
+                        "RoleId": "admins"
+                    }
                 }
-            }
+            },
+            {
+                "Comment": "Allow members of the group to read entity profile data and files",
+                "Action": "Read",
+                "Effect": "Allow",
+                "Resource": "pfrn:data--*!*/Profile/*",
+                "Principal": {                
+                    "MemberOf": { 
+                        "RoleId": "*"
+                    }
+                }
+            },
+            {
+                "Comment": "Allow members of the group administrator role to modify group profile data and files",
+                "Action": "*",
+                "Effect": "Allow",
+                "Resource": "pfrn:data--*!*/*",
+                "Principal": {                
+                    "MemberOf": { 
+                        "RoleId": "admins"
+                    }
+                }
+            },
+            {
+                "Comment": "Allow members of the group administrator role to do anything with the group",
+                "Action": "*",
+                "Effect": "Allow",
+                "Resource": "pfrn:group--*!*/*",
+                "Principal": {                
+                    "MemberOf": { 
+                        "RoleId": "admins"
+                    }
+                }
+            },
+            {
+                "Comment": "Allow members of the group to view members of the group",
+                "Action": "Read",
+                "Effect": "Allow",
+                "Resource": "pfrn:group--*!*/Members/*",
+                "Principal": {                
+                    "MemberOf": { 
+                        "RoleId": "*"
+                    }
+                }
+            },
+            {
+                "Comment": "Allow members of the group to read all roles in the group",
+                "Action": "Read",
+                "Effect": "Allow",
+                "Resource": "pfrn:group--*!*/Roles/*",
+                "Principal": {                
+                    "MemberOf": { 
+                        "RoleId": "*"
+                    }
+                }
+            },
+            {
+                "Comment": "Allow all entities to apply to join the group",
+                "Action": "Create",
+                "Effect": "Allow",
+                "Resource": "pfrn:group--*!*/Applications/*",
+                "Principal": {                
+                    "ChildOf": { 
+                        "EntityType": "title",
+                        "EntityId": "A5F3"
+                    }
+                }
+            },
+            {
+                "Comment": "Allow entities to leave the group",
+                "Action": "RemoveMember",
+                "Effect": "Allow",
+                "Resource": "pfrn:group--*!*/Members/[SELF]",
+                "Principal": {                
+                    "ChildOf": { 
+                        "EntityType": "title",
+                        "EntityId": "A5F3"
+                    }
+                }
+            },
+            {
+                "Comment": "Allow entities to leave any role that they are in",
+                "Action": "RemoveMember",
+                "Effect": "Allow",
+                "Resource": "pfrn:group--*!*/Roles/*/Members/[SELF]",
+                "Principal": {                
+                    "ChildOf": { 
+                        "EntityType": "title",
+                        "EntityId": "A5F3"
+                    }
+                }
+            },
         ],
         "Objects": {
             "Obj1": {
