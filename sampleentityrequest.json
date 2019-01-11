@@ -133,7 +133,7 @@
         ],
         "Objects": {
             "Obj1": {
-                "EscapedDataObject": null,
+                "EscapedDataObject": "",
                 "DataObject": {
                     "name": "One Thousand Voices",
                     "rarity": "exotic",
@@ -142,7 +142,7 @@
                 "ObjectName": "Obj1"
             },
             "Obj2": {
-                "EscapedDataObject": null,
+                "EscapedDataObject": "",
                 "DataObject": {
                     "name": "Insurmountable Skullfort",
                     "rarity": "exotic",
@@ -154,7 +154,7 @@
         "Files": {
             "data.json": {
                 "FileName": "data.json",
-                "LastModified": "",
+                "LastModified": "2019-01-11T00:01:01",
                 "Size": 1024,
                 "Checksum": "a1b2c3"
             }
