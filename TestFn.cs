@@ -11,8 +11,8 @@ namespace PlayFab.CloudScript
 
     public class Person
     {
-        public string firstName;
-        public string lastName;
+        public string firstName { get; set; }
+        public string lastName { get; set; }
     }
 
     public static class TestFn
@@ -22,13 +22,13 @@ namespace PlayFab.CloudScript
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] Person person,
             ILogger log)
         {
-            log.LogInformation("LevelComplete processed a request.");
+            log.LogInformation("TestFn processed a request.");
 
             log.LogInformation($"Name: {person.firstName} {person.lastName}");
 
             await Task.Delay(50); // Simulate some async work
 
-            return(ActionResult)new OkObjectResult($"Hello, {person.firstName}");
+            return (ActionResult)new OkObjectResult($"Hello, {person.firstName}");
         }
     }
 }
