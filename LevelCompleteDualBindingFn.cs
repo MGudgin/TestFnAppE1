@@ -8,20 +8,20 @@ namespace PlayFab.CloudScript
     using Microsoft.Azure.WebJobs.Extensions.Http;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Logging;
-    using System.Net.Http;
 
-    public static class LevelCompleteUntypedRequesMessageFn
+    public static class LevelCompleteDualBindingFn
     {
-        [FunctionName("LevelCompleteUntypedRequestMessage")]
+        [FunctionName("LevelCompleteDualBinding")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequestMessage httpReq,
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] LevelCompleteRequest req,
+            HttpRequest httpRequest,
             ILogger log)
         {
-            log.LogInformation("LevelCompleteUntypedRequestMessage processed a request.");
-
-            LevelCompleteRequest req = await httpReq.Content.ReadAsAsync<LevelCompleteRequest>();
+            log.LogInformation("LevelCompleteDualBinding processed a request.");
 
             log.LogInformation($"Level: {req.level.level} Points: {req.level.points}");
+
+            log.LogInformation($"HTTPS: {httpRequest.IsHttps}");
 
             await Task.Delay(50); // Simulate some async work
 
