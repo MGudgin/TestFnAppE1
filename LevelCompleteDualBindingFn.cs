@@ -19,13 +19,13 @@ namespace PlayFab.CloudScript
         {
             log.LogInformation($"{nameof(LevelCompleteDualBindingFn)} processed a request.");
 
-            log.LogInformation($"Level: {req.level.level} Points: {req.level.points}");
+            log.LogInformation($"Level: {req.FunctionParameter.level} Points: {req.FunctionParameter.points}");
 
             log.LogInformation($"HTTPS: {httpRequest.IsHttps}");
 
             await Task.Delay(50); // Simulate some async work
 
-            return (ActionResult)new OkObjectResult($"Congrats on completing level {req.level.level}");
+            return (ActionResult)new OkObjectResult($"Congrats on completing level {req.FunctionParameter.level}");
         }
     }
 }

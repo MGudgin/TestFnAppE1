@@ -1,23 +1,19 @@
 namespace PlayFab.CloudScript
 {
-    using Newtonsoft.Json;
     using PlayFab.ProfilesModels;
 
-    public struct LevelComplete
+    public class LevelComplete
     {
-        public int level { get; set; }
-        public int points { get; set; }
+        public int level;
+        public int points;
     }
 
     public class LevelCompleteRequest
     {
-        [JsonProperty("FunctionParameter")]
-        public LevelComplete level { get; set; }
+        public LevelComplete FunctionParameter { get; set; }
 
-        [JsonProperty("RequestorEntity")]
-        public EntityKey entityKey { get; set; }
+        public EntityKey RequestorEntity { get; set; }
 
-        [JsonProperty("EntityProfile")]
-        public EntityProfileBody profile { get; set; }
+        public EntityProfileBody EntityProfile { get; set; }
     }
 }

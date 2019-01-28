@@ -1,17 +1,13 @@
 namespace PlayFab.CloudScript
 {
-    using Newtonsoft.Json;
     using PlayFab.ProfilesModels;
 
     public class EntityRequest<T>
     {
-        [JsonProperty("FunctionParameter")]
-        public T parameter { get; set; }
+        public T FunctionParameter { get; set; }
 
-        [JsonProperty("RequestorEntity")]
-        public EntityKey entityKey { get; set; }
+        public EntityKey RequestorEntity { get; set; }
 
-        [JsonProperty("EntityProfile")]
-        public EntityProfileBody entityProfile { get; set; }
+        public EntityProfileBody EntityProfile { get; set; }
     }
 }

@@ -22,11 +22,11 @@ namespace PlayFab.CloudScript
             string body = await httpReq.ReadAsStringAsync();
             LevelCompleteRequest req = JsonConvert.DeserializeObject<LevelCompleteRequest>(body);
 
-            log.LogInformation($"Level: {req.level.level} Points: {req.level.points}");
+            log.LogInformation($"Level: {req.FunctionParameter.level} Points: {req.FunctionParameter.points}");
 
             await Task.Delay(50); // Simulate some async work
 
-            return (ActionResult)new OkObjectResult($"Congrats on completing level {req.level.level}");
+            return (ActionResult)new OkObjectResult($"Congrats on completing level {req.FunctionParameter.level}");
         }
     }
 }
