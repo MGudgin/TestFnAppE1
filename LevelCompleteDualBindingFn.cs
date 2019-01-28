@@ -11,13 +11,13 @@ namespace PlayFab.CloudScript
 
     public static class LevelCompleteDualBindingFn
     {
-        [FunctionName("LevelCompleteDualBinding")]
+        [FunctionName(nameof(LevelCompleteDualBindingFn))]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] LevelCompleteRequest req,
             HttpRequest httpRequest,
             ILogger log)
         {
-            log.LogInformation("LevelCompleteDualBinding processed a request.");
+            log.LogInformation($"{nameof(LevelCompleteDualBindingFn)} processed a request.");
 
             log.LogInformation($"Level: {req.level.level} Points: {req.level.points}");
 

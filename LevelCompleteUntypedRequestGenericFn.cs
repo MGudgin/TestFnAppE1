@@ -10,23 +10,23 @@ namespace PlayFab.CloudScript
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
 
-    public static class LevelCompleteUntypedRequestFn
+    public static class LevelCompleteUntypedRequestGenericFn
     {
-        [FunctionName(nameof(LevelCompleteUntypedRequestFn))]
+        [FunctionName(nameof(LevelCompleteUntypedRequestGenericFn))]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest httpReq,
             ILogger log)
         {
-            log.LogInformation($"{nameof(LevelCompleteUntypedRequestFn)} processed a request.");
+            log.LogInformation($"{nameof(LevelCompleteUntypedRequestGenericFn)} processed a request.");
 
             string body = await httpReq.ReadAsStringAsync();
-            LevelCompleteRequest req = JsonConvert.DeserializeObject<LevelCompleteRequest>(body);
+            EntityRequest<LevelComplete> req = JsonConvert.DeserializeObject<EntityRequest<LevelComplete>>(body);
 
-            log.LogInformation($"Level: {req.level.level} Points: {req.level.points}");
+            log.LogInformation($"Level: {req.parameter.level} Points: {req.parameter.points}");
 
             await Task.Delay(50); // Simulate some async work
 
-            return (ActionResult)new OkObjectResult($"Congrats on completing level {req.level.level}");
+            return (ActionResult)new OkObjectResult($"Congrats on completing level {req.parameter.level}");
         }
     }
 }

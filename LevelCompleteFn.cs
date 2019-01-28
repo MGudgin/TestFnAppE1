@@ -11,12 +11,12 @@ namespace PlayFab.CloudScript
 
     public static class LevelCompleteFn
     {
-        [FunctionName("LevelComplete")]
+        [FunctionName(nameof(LevelCompleteFn))]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] LevelCompleteRequest req,
             ILogger log)
         {
-            log.LogInformation("LevelComplete processed a request.");
+            log.LogInformation($"{nameof(LevelCompleteFn)} processed a request.");
 
             log.LogInformation($"Level: {req.level.level} Points: {req.level.points}");
 

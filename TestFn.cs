@@ -17,12 +17,12 @@ namespace PlayFab.CloudScript
 
     public static class TestFn
     {
-        [FunctionName("TestFn")]
+        [FunctionName(nameof(TestFn))]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] Person person,
             ILogger log)
         {
-            log.LogInformation("TestFn processed a request.");
+            log.LogInformation($"{nameof(TestFn)} processed a request.");
 
             log.LogInformation($"Name: {person.firstName} {person.lastName}");
 

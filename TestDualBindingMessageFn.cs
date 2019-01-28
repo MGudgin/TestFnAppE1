@@ -10,9 +10,9 @@ namespace PlayFab.CloudScript
     using Microsoft.Extensions.Logging;
     using System.Net.Http;
 
-    public static class TestDualBindingMEssageFn
+    public static class TestDualBindingMessageFn
     {
-        [FunctionName("TestDualBindingMessageFn")]
+        [FunctionName(nameof(TestDualBindingMessageFn))]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] Person person,
             HttpRequestMessage httpRequestMsg, // NOTE: This does not seem to be supported for dual-bindings. We get the following error on host startup;
@@ -23,7 +23,7 @@ namespace PlayFab.CloudScript
                                                // Microsoft.Azure.WebJobs.Host: 'TestDualBindingMessageFn' can't be invoked from Azure WebJobs SDK. Is it missing Azure WebJobs SDK attributes?.
             ILogger log)
         {
-            log.LogInformation("TestDualBindingMessageFn processed a request.");
+            log.LogInformation($"{nameof(TestDualBindingMessageFn)} processed a request.");
 
             log.LogInformation($"Name: {person.firstName} {person.lastName}");
 
