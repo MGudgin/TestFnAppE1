@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "e518206e-9e88-43ec-86ee-35775c4f687e",
+		"name": "PlayFabAzureFn",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LevelComplete",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FunctionParameter\": {\r\n        \"level\": 3,\r\n        \"points\": 500\r\n    },\r\n    \"RequestorEntity\": {\r\n        \"Id\": \"A5F3\",\r\n        \"Type\": \"title\"\r\n    },\r\n    \"EntityProfile\": {\r\n        \"Entity\": {\r\n            \"Type\": \"title_player_account\",\r\n            \"Id\":\"1234567787392\"\r\n        },\r\n        \"EntityChain\": \"title_player_account!09839712/1289749013/19073097/1234567787392\",\r\n        \"VersionNumber\": 12,\r\n        \"FriendlyName\": \"GentlestWarrior\",\r\n        \"Permissions\": [\r\n            {\r\n                \"Comment\": \"Allow all entities to read the group's metadata, such as name\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify the group metadata\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read entity profile data and files\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/Profile/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify group profile data and files\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to do anything with the group\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to view members of the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read all roles in the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow all entities to apply to join the group\",\r\n                \"Action\": \"Create\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Applications/*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave the group\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave any role that they are in\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            }\r\n        ],\r\n        \"Objects\": {\r\n            \"Obj1\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"One Thousand Voices\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"power\"\r\n                },\r\n                \"ObjectName\": \"Obj1\"\r\n            },\r\n            \"Obj2\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"Insurmountable Skullfort\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"helmet\"\r\n                },\r\n                \"ObjectName\": \"Obj2\"\r\n            }\r\n        },\r\n        \"Files\": {\r\n            \"data.json\": {\r\n                \"FileName\": \"data.json\",\r\n                \"LastModified\": \"2019-01-11T00:01:01\",\r\n                \"Size\": 1024,\r\n                \"Checksum\": \"a1b2c3\"\r\n            }\r\n            \r\n        },\r\n        \"Language\": \"en-us\",\r\n        \"Statistics\": [\r\n            {\r\n                \"Name\": \"\",\r\n                \"Tag\": \"\",\r\n                \"Value\": 100,\r\n                \"Version\": 1,\r\n                \"Metadata\": \"\"\r\n            }\r\n        ],\r\n        \"Lineage\": {\r\n            \"NamespaceId\": \"\",\r\n            \"TitleId\": \"A5F3\",\r\n            \"MasterPlayerAccountId\": \"\",\r\n            \"TitlePlayerAccountId\": \"123abc\",\r\n            \"CharacterId\": \"\",\r\n            \"GroupId\": \"\"\r\n        }\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://testfnappe1.azurewebsites.net/api/LevelCompleteFn?code=hF5YDwBKWv1oqbBL5cMl5hbHtDbTi1D1Shml620DE52sfrfdZwJTbw%3D%3D",
+					"protocol": "https",
+					"host": [
+						"testfnappe1",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"LevelCompleteFn"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "hF5YDwBKWv1oqbBL5cMl5hbHtDbTi1D1Shml620DE52sfrfdZwJTbw%3D%3D"
+						}
+					]
+				},
+				"description": "PlayFab entity call to CloudScript function"
+			},
+			"response": []
+		},
+		{
+			"name": "LevelCompleteGeneric",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FunctionParameter\": {\r\n        \"level\": 3,\r\n        \"points\": 500\r\n    },\r\n    \"RequestorEntity\": {\r\n        \"Id\": \"A5F3\",\r\n        \"Type\": \"title\"\r\n    },\r\n    \"EntityProfile\": {\r\n        \"Entity\": {\r\n            \"Type\": \"title_player_account\",\r\n            \"Id\":\"1234567787392\"\r\n        },\r\n        \"EntityChain\": \"title_player_account!09839712/1289749013/19073097/1234567787392\",\r\n        \"VersionNumber\": 12,\r\n        \"FriendlyName\": \"GentlestWarrior\",\r\n        \"Permissions\": [\r\n            {\r\n                \"Comment\": \"Allow all entities to read the group's metadata, such as name\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify the group metadata\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read entity profile data and files\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/Profile/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify group profile data and files\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to do anything with the group\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to view members of the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read all roles in the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow all entities to apply to join the group\",\r\n                \"Action\": \"Create\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Applications/*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave the group\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave any role that they are in\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            }\r\n        ],\r\n        \"Objects\": {\r\n            \"Obj1\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"One Thousand Voices\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"power\"\r\n                },\r\n                \"ObjectName\": \"Obj1\"\r\n            },\r\n            \"Obj2\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"Insurmountable Skullfort\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"helmet\"\r\n                },\r\n                \"ObjectName\": \"Obj2\"\r\n            }\r\n        },\r\n        \"Files\": {\r\n            \"data.json\": {\r\n                \"FileName\": \"data.json\",\r\n                \"LastModified\": \"2019-01-11T00:01:01\",\r\n                \"Size\": 1024,\r\n                \"Checksum\": \"a1b2c3\"\r\n            }\r\n            \r\n        },\r\n        \"Language\": \"en-us\",\r\n        \"Statistics\": [\r\n            {\r\n                \"Name\": \"\",\r\n                \"Tag\": \"\",\r\n                \"Value\": 100,\r\n                \"Version\": 1,\r\n                \"Metadata\": \"\"\r\n            }\r\n        ],\r\n        \"Lineage\": {\r\n            \"NamespaceId\": \"\",\r\n            \"TitleId\": \"A5F3\",\r\n            \"MasterPlayerAccountId\": \"\",\r\n            \"TitlePlayerAccountId\": \"123abc\",\r\n            \"CharacterId\": \"\",\r\n            \"GroupId\": \"\"\r\n        }\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://testfnappe1.azurewebsites.net/api/LevelCompleteGenericFn?code=JNWJq3UHF2Wx5zDhss9yOvDFS6i6bC83MnjaREl0rb6CCHapUpOMbQ%3D%3D",
+					"protocol": "https",
+					"host": [
+						"testfnappe1",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"LevelCompleteGenericFn"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "JNWJq3UHF2Wx5zDhss9yOvDFS6i6bC83MnjaREl0rb6CCHapUpOMbQ%3D%3D"
+						}
+					]
+				},
+				"description": "PlayFab entity call to CloudScript function"
+			},
+			"response": []
+		},
+		{
+			"name": "LevelCompleteDualBinding",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FunctionParameter\": {\r\n        \"level\": 3,\r\n        \"points\": 500\r\n    },\r\n    \"RequestorEntity\": {\r\n        \"Id\": \"A5F3\",\r\n        \"Type\": \"title\"\r\n    },\r\n    \"EntityProfile\": {\r\n        \"Entity\": {\r\n            \"Type\": \"title_player_account\",\r\n            \"Id\":\"1234567787392\"\r\n        },\r\n        \"EntityChain\": \"title_player_account!09839712/1289749013/19073097/1234567787392\",\r\n        \"VersionNumber\": 12,\r\n        \"FriendlyName\": \"GentlestWarrior\",\r\n        \"Permissions\": [\r\n            {\r\n                \"Comment\": \"Allow all entities to read the group's metadata, such as name\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify the group metadata\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read entity profile data and files\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/Profile/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify group profile data and files\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to do anything with the group\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to view members of the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read all roles in the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow all entities to apply to join the group\",\r\n                \"Action\": \"Create\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Applications/*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave the group\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave any role that they are in\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            }\r\n        ],\r\n        \"Objects\": {\r\n            \"Obj1\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"One Thousand Voices\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"power\"\r\n                },\r\n                \"ObjectName\": \"Obj1\"\r\n            },\r\n            \"Obj2\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"Insurmountable Skullfort\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"helmet\"\r\n                },\r\n                \"ObjectName\": \"Obj2\"\r\n            }\r\n        },\r\n        \"Files\": {\r\n            \"data.json\": {\r\n                \"FileName\": \"data.json\",\r\n                \"LastModified\": \"2019-01-11T00:01:01\",\r\n                \"Size\": 1024,\r\n                \"Checksum\": \"a1b2c3\"\r\n            }\r\n            \r\n        },\r\n        \"Language\": \"en-us\",\r\n        \"Statistics\": [\r\n            {\r\n                \"Name\": \"\",\r\n                \"Tag\": \"\",\r\n                \"Value\": 100,\r\n                \"Version\": 1,\r\n                \"Metadata\": \"\"\r\n            }\r\n        ],\r\n        \"Lineage\": {\r\n            \"NamespaceId\": \"\",\r\n            \"TitleId\": \"A5F3\",\r\n            \"MasterPlayerAccountId\": \"\",\r\n            \"TitlePlayerAccountId\": \"123abc\",\r\n            \"CharacterId\": \"\",\r\n            \"GroupId\": \"\"\r\n        }\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://testfnappe1.azurewebsites.net/api/LevelCompleteDualBindingFn?code=tVSK3kzpNeu747pkqUDUrzfBt7hKHsUPsPrk4kbimgde%2FfxWxMcCdg%3D%3D",
+					"protocol": "https",
+					"host": [
+						"testfnappe1",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"LevelCompleteDualBindingFn"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "tVSK3kzpNeu747pkqUDUrzfBt7hKHsUPsPrk4kbimgde%2FfxWxMcCdg%3D%3D"
+						}
+					]
+				},
+				"description": "PlayFab entity call to CloudScript function"
+			},
+			"response": []
+		},
+		{
+			"name": "LevelCompleteDualBindingGeneric",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FunctionParameter\": {\r\n        \"level\": 3,\r\n        \"points\": 500\r\n    },\r\n    \"RequestorEntity\": {\r\n        \"Id\": \"A5F3\",\r\n        \"Type\": \"title\"\r\n    },\r\n    \"EntityProfile\": {\r\n        \"Entity\": {\r\n            \"Type\": \"title_player_account\",\r\n            \"Id\":\"1234567787392\"\r\n        },\r\n        \"EntityChain\": \"title_player_account!09839712/1289749013/19073097/1234567787392\",\r\n        \"VersionNumber\": 12,\r\n        \"FriendlyName\": \"GentlestWarrior\",\r\n        \"Permissions\": [\r\n            {\r\n                \"Comment\": \"Allow all entities to read the group's metadata, such as name\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify the group metadata\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read entity profile data and files\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/Profile/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify group profile data and files\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to do anything with the group\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to view members of the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read all roles in the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow all entities to apply to join the group\",\r\n                \"Action\": \"Create\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Applications/*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave the group\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave any role that they are in\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            }\r\n        ],\r\n        \"Objects\": {\r\n            \"Obj1\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"One Thousand Voices\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"power\"\r\n                },\r\n                \"ObjectName\": \"Obj1\"\r\n            },\r\n            \"Obj2\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"Insurmountable Skullfort\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"helmet\"\r\n                },\r\n                \"ObjectName\": \"Obj2\"\r\n            }\r\n        },\r\n        \"Files\": {\r\n            \"data.json\": {\r\n                \"FileName\": \"data.json\",\r\n                \"LastModified\": \"2019-01-11T00:01:01\",\r\n                \"Size\": 1024,\r\n                \"Checksum\": \"a1b2c3\"\r\n            }\r\n            \r\n        },\r\n        \"Language\": \"en-us\",\r\n        \"Statistics\": [\r\n            {\r\n                \"Name\": \"\",\r\n                \"Tag\": \"\",\r\n                \"Value\": 100,\r\n                \"Version\": 1,\r\n                \"Metadata\": \"\"\r\n            }\r\n        ],\r\n        \"Lineage\": {\r\n            \"NamespaceId\": \"\",\r\n            \"TitleId\": \"A5F3\",\r\n            \"MasterPlayerAccountId\": \"\",\r\n            \"TitlePlayerAccountId\": \"123abc\",\r\n            \"CharacterId\": \"\",\r\n            \"GroupId\": \"\"\r\n        }\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://testfnappe1.azurewebsites.net/api/LevelCompleteDualBindingGenericFn?code=wIw2xlZ1VTD0Dfe8uk1HGC8oLHUvM7W0rn3Stisgi7RKHpbq4bKcAw%3D%3D",
+					"protocol": "https",
+					"host": [
+						"testfnappe1",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"LevelCompleteDualBindingGenericFn"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "wIw2xlZ1VTD0Dfe8uk1HGC8oLHUvM7W0rn3Stisgi7RKHpbq4bKcAw%3D%3D"
+						}
+					]
+				},
+				"description": "PlayFab entity call to CloudScript function"
+			},
+			"response": []
+		},
+		{
+			"name": "LevelCompleteUntypedRequest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FunctionParameter\": {\r\n        \"level\": 3,\r\n        \"points\": 500\r\n    },\r\n    \"RequestorEntity\": {\r\n        \"Id\": \"A5F3\",\r\n        \"Type\": \"title\"\r\n    },\r\n    \"EntityProfile\": {\r\n        \"Entity\": {\r\n            \"Type\": \"title_player_account\",\r\n            \"Id\":\"1234567787392\"\r\n        },\r\n        \"EntityChain\": \"title_player_account!09839712/1289749013/19073097/1234567787392\",\r\n        \"VersionNumber\": 12,\r\n        \"FriendlyName\": \"GentlestWarrior\",\r\n        \"Permissions\": [\r\n            {\r\n                \"Comment\": \"Allow all entities to read the group's metadata, such as name\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify the group metadata\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read entity profile data and files\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/Profile/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify group profile data and files\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to do anything with the group\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to view members of the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read all roles in the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow all entities to apply to join the group\",\r\n                \"Action\": \"Create\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Applications/*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave the group\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave any role that they are in\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            }\r\n        ],\r\n        \"Objects\": {\r\n            \"Obj1\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"One Thousand Voices\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"power\"\r\n                },\r\n                \"ObjectName\": \"Obj1\"\r\n            },\r\n            \"Obj2\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"Insurmountable Skullfort\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"helmet\"\r\n                },\r\n                \"ObjectName\": \"Obj2\"\r\n            }\r\n        },\r\n        \"Files\": {\r\n            \"data.json\": {\r\n                \"FileName\": \"data.json\",\r\n                \"LastModified\": \"2019-01-11T00:01:01\",\r\n                \"Size\": 1024,\r\n                \"Checksum\": \"a1b2c3\"\r\n            }\r\n            \r\n        },\r\n        \"Language\": \"en-us\",\r\n        \"Statistics\": [\r\n            {\r\n                \"Name\": \"\",\r\n                \"Tag\": \"\",\r\n                \"Value\": 100,\r\n                \"Version\": 1,\r\n                \"Metadata\": \"\"\r\n            }\r\n        ],\r\n        \"Lineage\": {\r\n            \"NamespaceId\": \"\",\r\n            \"TitleId\": \"A5F3\",\r\n            \"MasterPlayerAccountId\": \"\",\r\n            \"TitlePlayerAccountId\": \"123abc\",\r\n            \"CharacterId\": \"\",\r\n            \"GroupId\": \"\"\r\n        }\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://testfnappe1.azurewebsites.net/api/LevelCompleteUntypedRequestFn?code=Si%2Flbt48w3SDUOIaxq77VuzwAX80bg4cSGKnbAhR%2FZSaV0d%2Fk7ePVg%3D%3D",
+					"protocol": "https",
+					"host": [
+						"testfnappe1",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"LevelCompleteUntypedRequestFn"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "Si%2Flbt48w3SDUOIaxq77VuzwAX80bg4cSGKnbAhR%2FZSaV0d%2Fk7ePVg%3D%3D"
+						}
+					]
+				},
+				"description": "PlayFab entity call to CloudScript function"
+			},
+			"response": []
+		},
+		{
+			"name": "LevelCompleteUntypedRequestGeneric",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FunctionParameter\": {\r\n        \"level\": 3,\r\n        \"points\": 500\r\n    },\r\n    \"RequestorEntity\": {\r\n        \"Id\": \"A5F3\",\r\n        \"Type\": \"title\"\r\n    },\r\n    \"EntityProfile\": {\r\n        \"Entity\": {\r\n            \"Type\": \"title_player_account\",\r\n            \"Id\":\"1234567787392\"\r\n        },\r\n        \"EntityChain\": \"title_player_account!09839712/1289749013/19073097/1234567787392\",\r\n        \"VersionNumber\": 12,\r\n        \"FriendlyName\": \"GentlestWarrior\",\r\n        \"Permissions\": [\r\n            {\r\n                \"Comment\": \"Allow all entities to read the group's metadata, such as name\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify the group metadata\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read entity profile data and files\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/Profile/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify group profile data and files\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to do anything with the group\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to view members of the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read all roles in the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow all entities to apply to join the group\",\r\n                \"Action\": \"Create\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Applications/*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave the group\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave any role that they are in\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            }\r\n        ],\r\n        \"Objects\": {\r\n            \"Obj1\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"One Thousand Voices\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"power\"\r\n                },\r\n                \"ObjectName\": \"Obj1\"\r\n            },\r\n            \"Obj2\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"Insurmountable Skullfort\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"helmet\"\r\n                },\r\n                \"ObjectName\": \"Obj2\"\r\n            }\r\n        },\r\n        \"Files\": {\r\n            \"data.json\": {\r\n                \"FileName\": \"data.json\",\r\n                \"LastModified\": \"2019-01-11T00:01:01\",\r\n                \"Size\": 1024,\r\n                \"Checksum\": \"a1b2c3\"\r\n            }\r\n            \r\n        },\r\n        \"Language\": \"en-us\",\r\n        \"Statistics\": [\r\n            {\r\n                \"Name\": \"\",\r\n                \"Tag\": \"\",\r\n                \"Value\": 100,\r\n                \"Version\": 1,\r\n                \"Metadata\": \"\"\r\n            }\r\n        ],\r\n        \"Lineage\": {\r\n            \"NamespaceId\": \"\",\r\n            \"TitleId\": \"A5F3\",\r\n            \"MasterPlayerAccountId\": \"\",\r\n            \"TitlePlayerAccountId\": \"123abc\",\r\n            \"CharacterId\": \"\",\r\n            \"GroupId\": \"\"\r\n        }\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://testfnappe1.azurewebsites.net/api/LevelCompleteUntypedRequestGenericFn?code=ENGGy0Xhu4YzpEwfRQGboNqTGDyNzj20xfMR4rsinPxgXp5uMMXsQw%3D%3D",
+					"protocol": "https",
+					"host": [
+						"testfnappe1",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"LevelCompleteUntypedRequestGenericFn"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "ENGGy0Xhu4YzpEwfRQGboNqTGDyNzj20xfMR4rsinPxgXp5uMMXsQw%3D%3D"
+						}
+					]
+				},
+				"description": "PlayFab entity call to CloudScript function"
+			},
+			"response": []
+		},
+		{
+			"name": "LevelCompleteUntypedRequestMessage",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FunctionParameter\": {\r\n        \"level\": 3,\r\n        \"points\": 500\r\n    },\r\n    \"RequestorEntity\": {\r\n        \"Id\": \"A5F3\",\r\n        \"Type\": \"title\"\r\n    },\r\n    \"EntityProfile\": {\r\n        \"Entity\": {\r\n            \"Type\": \"title_player_account\",\r\n            \"Id\":\"1234567787392\"\r\n        },\r\n        \"EntityChain\": \"title_player_account!09839712/1289749013/19073097/1234567787392\",\r\n        \"VersionNumber\": 12,\r\n        \"FriendlyName\": \"GentlestWarrior\",\r\n        \"Permissions\": [\r\n            {\r\n                \"Comment\": \"Allow all entities to read the group's metadata, such as name\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify the group metadata\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read entity profile data and files\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/Profile/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify group profile data and files\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to do anything with the group\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to view members of the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read all roles in the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow all entities to apply to join the group\",\r\n                \"Action\": \"Create\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Applications/*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave the group\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave any role that they are in\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            }\r\n        ],\r\n        \"Objects\": {\r\n            \"Obj1\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"One Thousand Voices\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"power\"\r\n                },\r\n                \"ObjectName\": \"Obj1\"\r\n            },\r\n            \"Obj2\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"Insurmountable Skullfort\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"helmet\"\r\n                },\r\n                \"ObjectName\": \"Obj2\"\r\n            }\r\n        },\r\n        \"Files\": {\r\n            \"data.json\": {\r\n                \"FileName\": \"data.json\",\r\n                \"LastModified\": \"2019-01-11T00:01:01\",\r\n                \"Size\": 1024,\r\n                \"Checksum\": \"a1b2c3\"\r\n            }\r\n            \r\n        },\r\n        \"Language\": \"en-us\",\r\n        \"Statistics\": [\r\n            {\r\n                \"Name\": \"\",\r\n                \"Tag\": \"\",\r\n                \"Value\": 100,\r\n                \"Version\": 1,\r\n                \"Metadata\": \"\"\r\n            }\r\n        ],\r\n        \"Lineage\": {\r\n            \"NamespaceId\": \"\",\r\n            \"TitleId\": \"A5F3\",\r\n            \"MasterPlayerAccountId\": \"\",\r\n            \"TitlePlayerAccountId\": \"123abc\",\r\n            \"CharacterId\": \"\",\r\n            \"GroupId\": \"\"\r\n        }\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://testfnappe1.azurewebsites.net/api/LevelCompleteUntypedRequestMessageFn?code=A75RiQIaqcHGwAr2KqCs8KsRNauHho0lbrADcPkhWe7uSWu3bd3Kjg%3D%3D",
+					"protocol": "https",
+					"host": [
+						"testfnappe1",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"LevelCompleteUntypedRequestMessageFn"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "A75RiQIaqcHGwAr2KqCs8KsRNauHho0lbrADcPkhWe7uSWu3bd3Kjg%3D%3D"
+						}
+					]
+				},
+				"description": "PlayFab entity call to CloudScript function"
+			},
+			"response": []
+		},
+		{
+			"name": "LevelCompleteUntypedRequestMessageGeneric",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"FunctionParameter\": {\r\n        \"level\": 3,\r\n        \"points\": 500\r\n    },\r\n    \"RequestorEntity\": {\r\n        \"Id\": \"A5F3\",\r\n        \"Type\": \"title\"\r\n    },\r\n    \"EntityProfile\": {\r\n        \"Entity\": {\r\n            \"Type\": \"title_player_account\",\r\n            \"Id\":\"1234567787392\"\r\n        },\r\n        \"EntityChain\": \"title_player_account!09839712/1289749013/19073097/1234567787392\",\r\n        \"VersionNumber\": 12,\r\n        \"FriendlyName\": \"GentlestWarrior\",\r\n        \"Permissions\": [\r\n            {\r\n                \"Comment\": \"Allow all entities to read the group's metadata, such as name\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify the group metadata\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read entity profile data and files\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/Profile/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to modify group profile data and files\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:data--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group administrator role to do anything with the group\",\r\n                \"Action\": \"*\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"admins\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to view members of the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow members of the group to read all roles in the group\",\r\n                \"Action\": \"Read\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*\",\r\n                \"Principal\": {                \r\n                    \"MemberOf\": { \r\n                        \"RoleId\": \"*\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow all entities to apply to join the group\",\r\n                \"Action\": \"Create\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Applications/*\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave the group\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            },\r\n            {\r\n                \"Comment\": \"Allow entities to leave any role that they are in\",\r\n                \"Action\": \"RemoveMember\",\r\n                \"Effect\": \"Allow\",\r\n                \"Resource\": \"pfrn:group--*!*/Roles/*/Members/[SELF]\",\r\n                \"Principal\": {                \r\n                    \"ChildOf\": { \r\n                        \"EntityType\": \"title\",\r\n                        \"EntityId\": \"A5F3\"\r\n                    }\r\n                }\r\n            }\r\n        ],\r\n        \"Objects\": {\r\n            \"Obj1\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"One Thousand Voices\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"power\"\r\n                },\r\n                \"ObjectName\": \"Obj1\"\r\n            },\r\n            \"Obj2\": {\r\n                \"EscapedDataObject\": \"\",\r\n                \"DataObject\": {\r\n                    \"name\": \"Insurmountable Skullfort\",\r\n                    \"rarity\": \"exotic\",\r\n                    \"slot\": \"helmet\"\r\n                },\r\n                \"ObjectName\": \"Obj2\"\r\n            }\r\n        },\r\n        \"Files\": {\r\n            \"data.json\": {\r\n                \"FileName\": \"data.json\",\r\n                \"LastModified\": \"2019-01-11T00:01:01\",\r\n                \"Size\": 1024,\r\n                \"Checksum\": \"a1b2c3\"\r\n            }\r\n            \r\n        },\r\n        \"Language\": \"en-us\",\r\n        \"Statistics\": [\r\n            {\r\n                \"Name\": \"\",\r\n                \"Tag\": \"\",\r\n                \"Value\": 100,\r\n                \"Version\": 1,\r\n                \"Metadata\": \"\"\r\n            }\r\n        ],\r\n        \"Lineage\": {\r\n            \"NamespaceId\": \"\",\r\n            \"TitleId\": \"A5F3\",\r\n            \"MasterPlayerAccountId\": \"\",\r\n            \"TitlePlayerAccountId\": \"123abc\",\r\n            \"CharacterId\": \"\",\r\n            \"GroupId\": \"\"\r\n        }\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://testfnappe1.azurewebsites.net/api/LevelCompleteUntypedRequestMessageGenericFn?code=e87VGWhRACalnMeDN0D0JCymstWd7r26c6jraQ9XJ7cc6NVLOaOTXQ%3D%3D",
+					"protocol": "https",
+					"host": [
+						"testfnappe1",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"LevelCompleteUntypedRequestMessageGenericFn"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "e87VGWhRACalnMeDN0D0JCymstWd7r26c6jraQ9XJ7cc6NVLOaOTXQ%3D%3D"
+						}
+					]
+				},
+				"description": "PlayFab entity call to CloudScript function"
+			},
+			"response": []
+		},
+		{
+			"name": "Test",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"Martin\",\n  \"lastName\": \"Gudgin\"\n}"
+				},
+				"url": {
+					"raw": "https://testfnappe1.azurewebsites.net/api/TestFn?code=0sgk0MoapReBLBrQ40zvzM%2FDP8Kxw2Oj%2FUaIBCT9TUuqb92yub%2FWaQ%3D%3D",
+					"protocol": "https",
+					"host": [
+						"testfnappe1",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"TestFn"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "0sgk0MoapReBLBrQ40zvzM%2FDP8Kxw2Oj%2FUaIBCT9TUuqb92yub%2FWaQ%3D%3D"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
