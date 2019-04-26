@@ -21,7 +21,7 @@ namespace PlayFab.CloudScript
         {
             log.LogInformation($"{nameof(LevelCompleteUntypedRequestMessageGenericFn)} processed a request.");
 
-            EntityRequest<LevelComplete> req = await httpReq.Content.ReadAsAsync<EntityRequest<LevelComplete>>();
+            FunctionExecutionContext<LevelComplete> req = await httpReq.Content.ReadAsAsync<FunctionExecutionContext<LevelComplete>>();
 
             log.LogInformation($"Level: {req.FunctionParameter.level} Points: {req.FunctionParameter.points}");
 

@@ -15,7 +15,7 @@ namespace PlayFab.CloudScript
     {
         [FunctionName(nameof(LevelCompleteDualBindingGenericCrashFn))]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] EntityRequest<LevelComplete> req,
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] FunctionExecutionContext<LevelComplete> req,
             HttpRequest httpRequest,
             ILogger log)
         {
