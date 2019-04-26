@@ -15,7 +15,7 @@ namespace PlayFab.CloudScript
     {
         [FunctionName(nameof(LevelCompleteGenericFn))]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] EntityRequest<LevelComplete> req,
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] FunctionExecutionContext<LevelComplete> req,
             ILogger log)
         {
             log.LogInformation($"{nameof(LevelCompleteGenericFn)} processed a request.");
